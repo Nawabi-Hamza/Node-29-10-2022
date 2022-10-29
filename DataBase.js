@@ -32,13 +32,19 @@ var con = mysql.createConnection({
         //     console.log("DataBase Connected..")
         //     console.log(res)
         // })
-        var sql = "SELECT * FROM customers "
-        con.query(sql,(err,res)=>{
+        
+        // create foriegn key importent for make forgien key
+        // "CREATE TABLE orders (id INT NOT NULL PRIMARY KEY, order_number INT ,customers_id INT , products_id INT , FOREIGN KEY(customers_id) REFERENCES customers(id),FOREIGN KEY (products_id) REFERENCES products(id))"
+        // var sqli = "SELECT * FROM customers "
+        // var sql = "SELECT orders.order_number , customers.name ,  customers.price ,customers.stock FROM orders INNER JOIN customers ON customers_id = customers_id;"
+        // var sql = "SELECT orders.order_number , products.name FROM orders INNER JOIN products ON products_id = products.ID "
+        con.query(sqli,(err,res)=>{
             console.log("Your Connected ...")
             console.log(res)
-            http.createServer((req,response)=>{
-                response.writeHead(200,{'content-type':'Application/jsopn'})
-                response.end(JSON.stringify(res))
-            }).listen(369,()=>{console.log("DataBase is in Screen")})
+            // http.createServer((req,response)=>{
+            //     response.writeHead(200,{'content-type':'Application/jsopn'})
+            //     response.end(JSON.stringify(res))
+            // }).listen(369,()=>{console.log("DataBase is in Screen")})
         })
     })
+    
